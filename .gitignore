@@ -1,0 +1,4 @@
+*.log
+node_modules
+security/ssl/xmms-webserver.crt
+security/ssl/xmms-webserver.pem

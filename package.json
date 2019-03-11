@@ -1,0 +1,30 @@
+{
+  "name": "xmms-webserver",
+  "version": "1.0.0",
+  "description": "Lets you control XMMS server via a restful web interface.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoroloco/xmms-webserver.git"
+  },
+  "keywords": [
+    "xmms"
+  ],
+  "author": "Kenneth Centurion",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zoroloco/xmms-webserver/issues"
+  },
+  "dependencies": {
+    "async": "^1.5.0",
+    "body-parser": "^1.15.0",
+    "express": "^4.14.0",
+    "method-override": "^2.3.5",
+    "underscore": "^1.8.3",
+    "winston": "^2.1.1"
+  },
+  "homepage": "https://github.com/zoroloco/xmms-webserver#readme"
+}

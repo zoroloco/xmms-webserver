@@ -1,0 +1,10 @@
+{ "title" : "xmms-webserver",
+  "hostname" : "localhost",
+
+  "port"     : 443,
+
+  "logger" : {
+    "enabled" : true,
+    "dir"     : "logs"
+  }
+}
