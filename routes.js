@@ -37,7 +37,8 @@ module.exports = function(app) {
   });
 
   app.get('/shuffle',function(req,res,shuffle){
-    Xmms.sendCommand('jump 3321');//TODOO; generate random number.
+    var rand = Math.floor(Math.random() * 5100);
+    Xmms.sendCommand('jump '+rand);
     res.sendStatus(200);
   });
 
