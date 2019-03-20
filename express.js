@@ -18,12 +18,13 @@ module.exports = function() {
     app.set('title', conf.title);
 
     //CONFIGURE SSL
+/*
     app.set('httpsOptions',
     {
         key:  fs.readFileSync(pathUtil.join(__dirname, "./security/ssl/xmms-webserver.pem")),
         cert: fs.readFileSync(pathUtil.join(__dirname, "./security/ssl/xmms-webserver.crt"))
     });
-
+*/
     // get all data/stuff of the body (POST) parameters
     // parse application/json
     app.use(bodyParser.json());
