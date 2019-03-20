@@ -1,7 +1,8 @@
 { "title" : "xmms-webserver",
-  "hostname" : "localhost",
+  "hostname" : "192.168.1.249",
 
-  "port"     : 443,
+  "sslPort"     : 7482,
+  "httpPort"    : 7483,
 
   "logger" : {
     "enabled" : true,

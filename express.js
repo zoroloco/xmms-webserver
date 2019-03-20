@@ -13,7 +13,7 @@ module.exports = function() {
 
     log.info("Setting default and config values for express app.");
 
-    app.set('port', process.env.PORT || conf.port);
+    app.set('sslPort', process.env.PORT || conf.sslPort);
     app.set('httpPort', conf.httpPort);
     app.set('title', conf.title);
 
