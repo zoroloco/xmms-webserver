@@ -4,4 +4,6 @@
 # This script will start xmms-webserver
 #
 
+xmms2d&
+
 npm start

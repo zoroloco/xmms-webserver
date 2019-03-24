@@ -21,14 +21,6 @@ function Xmms(){
         myXmms = cp.spawn('/usr/bin/xmms2');
         myXmms.stdin.setEncoding('utf-8');
 
-        myXmms.stdout.on('data', (data) => {
-            log.info('XMMS received stdout from remote xmms:'+data.toString());
-        });
-
-        myXmms.stderr.on('data', (err) => {
-            log.error('XMMS received stderr from remote xmms:'+err);
-        });
-
         myXmms.on('close', (code) => {
             log.info('XMMS process closed with code:'+code);
         });
@@ -38,10 +30,30 @@ function Xmms(){
         });
     };
 
-    Xmms.sendCommand = function(cmd){
+    Xmms.sendCommand = function(req,res){
         var self = this;
-        log.info('XMMS got command:'+cmd);
-        myXmms.stdin.write(cmd+'\r');
+        log.info('XMMS got command:'+req.originalUrl);
+
+        if(req.originalUrl === '/shuffle'){
+            let rand = Math.floor(Math.random() * 4848);
+            myXmms.stdin.write('jump '+rand+'\r');
+        }
+        else{
+            let cmd = req.originalUrl.replace('/','');
+            log.info('Sending to xmms command:'+cmd);
+            myXmms.stdin.write(cmd+'\r');
+        }
+
+        myXmms.stdout.on('data', (data) => {
+            let dataStr = data.toString();
+            log.info('XMMS received stdout from remote xmms:'+dataStr);
+            res.json({'msg':dataStr}).status(200);
+        });
+
+        myXmms.stderr.on('data', (err) => {
+            log.error('XMMS received stderr from remote xmms:'+err);
+            res.json({'errMsg':err}).status(200);
+        });
     }
 }
 

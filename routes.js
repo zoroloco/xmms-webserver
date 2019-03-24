@@ -2,51 +2,31 @@
 
 var pathUtil = require('path'),
     log      = require(pathUtil.join(__dirname,'./logger.js')),
-    Xmms     = require(pathUtil.join(__dirname,'./xmms.js')),
+    xmms     = require(pathUtil.join(__dirname,'./xmms.js')),
     cors     = require('cors'),
-    securityController = require(pathUtil.join(__dirname,'./security.server.controller.js'));
+    serverController = require(pathUtil.join(__dirname,'./server.controller.js'));
 
 module.exports = function(app) {
   //order important here.
 
   //EVERYTHING WILL BE AUDITED AND REROUTED TO SECURE SITE.
   app.use(cors(),
-          securityController.auditRequest,
+      serverController.auditRequest,
           //securityController.reRouteHttps
   );
 
-  app.get('/',function(req,res,next){
+  app.get('/',function(req,res){
     res.sendStatus(404);
   });
 
-  app.get('/play', function(req, res) {
-    Xmms.sendCommand('play');
-    res.json('{}').status(200);
-  });
-
-  app.get('/stop', function(req, res) {
-    Xmms.sendCommand('stop');
-    res.json('{}').status(200);
-  });
-
-  app.get('/next',function(req,res,next){
-    Xmms.sendCommand('next');
-    res.json('{}').status(200);
-  });
-
-  app.get('/prev',function(req,res,prev){
-      Xmms.sendCommand('prev');
-    res.json('{}').status(200);
-  });
-
-  app.get('/shuffle',function(req,res,shuffle){
-    var rand = Math.floor(Math.random() * 4848);
-    Xmms.sendCommand('jump '+rand);
-    res.json('{}').status(200);
-  });
+  app.get('/play', xmms.sendCommand);
+  app.get('/stop', xmms.sendCommand);
+  app.get('/next', xmms.sendCommand);
+  app.get('/prev', xmms.sendCommand);
+  app.get('/shuffle',xmms.sendCommand);
 
   //everything else is a 404, not found.
-  app.get('*',function(req,res,next){
+  app.get('*',function(req,res){
     res.sendStatus(404);
   });
 

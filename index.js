@@ -52,8 +52,7 @@ process.on('uncaughtException', function (err) {
         msg += err.message;
     } else {
         msg += err;
-    }play
-play
+    }
     log.error(msg);
 });
 /*
