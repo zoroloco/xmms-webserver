@@ -52,6 +52,7 @@ function Xmms(){
             let dataStr = data.toString();
             //log.info('XMMS2D received stdout from remote xmms2d:'+dataStr);
             let mStr = dataStr.substring(dataStr.indexOf('Music-Ken'),dataStr.indexOf('\' (')).replace('Music-Ken/','');
+            mStr = mStr.replace('%','');
             log.info('Music Filename:'+mStr);
             Xmms.saveAction(mStr);
         });
