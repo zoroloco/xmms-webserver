@@ -50,7 +50,7 @@ function Xmms(){
 
         myXmms2d.stdout.on('data', (data)=>{
             let dataStr = data.toString();
-            //log.info('XMMS2D received stdout from remote xmms2d:'+dataStr);
+            log.info('XMMS2D received stdout from remote xmms2d:'+dataStr);
             let mStr = dataStr.substring(dataStr.indexOf('Music-Ken'),dataStr.indexOf('\' (')).replace('Music-Ken/','');
             mStr = mStr.replace('%','');
             log.info('Music Filename:'+mStr);
@@ -70,7 +70,7 @@ function Xmms(){
             event_time: new Date()
         });
 
-        //log.info("Saving:" + JSON.stringify(saveMe));
+        log.info("Saving:" + JSON.stringify(saveMe));
 
         mongoloid.save(saveMe);
     };
@@ -85,7 +85,7 @@ function Xmms(){
         }
         else{
             let cmd = req.originalUrl.replace('/','');
-            //log.info('Sending to xmms command:'+cmd);
+            log.info('Sending to xmms command:'+cmd);
             myXmms.stdin.write(cmd+'\r');
         }
 
